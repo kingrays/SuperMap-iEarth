@@ -20,7 +20,7 @@
 </template>
 
 <script lang="ts" setup>
-import Authenticate from "@ispeco/authentication-sdk"; // 超图iportal第三方库
+// import Authenticate from "@ispeco/authentication-sdk"; // 超图iportal第三方库
 import { computed } from "vue";
 import { IportalStoreCreate } from "@/store/iportalManage/index";
 import { getRootUrl } from "@/tools/iportal/portalTools";
@@ -29,31 +29,31 @@ const IportalStore = IportalStoreCreate();
 
 // 登录页面
 function showLoginBox() {
-  const authInstance = new Authenticate({
-    loginOptions: {
-      theme: "dark",
-      appName: "iEarth",
-      // logoUrl: ('./logo.png'),
-      // rootUrl: "/iportal/", // 正确的地址
-    },
-    onSucceed: function (result: any) {
-      if (window.iEarthConsole) console.log("用户信息", result);
-      const { data } = result;
-      if (data && data.success && data.user) {
-        IportalStore.isLogin = true;
-        IportalStore.userInfo.userName = data.user.name;
-        IportalStore.userInfo.nickName = data.user.nickname;
-        window["$message"].success("登录成功");
-      }
-    },
-    onFailed: function (err) {
-      console.log("err------>", err);
-    },
-    onCanceled: function (err) {
-      console.log("err------>", err);
-    },
-  });
-  authInstance.create();
+  // const authInstance = new Authenticate({
+  //   loginOptions: {
+  //     theme: "dark",
+  //     appName: "iEarth",
+  //     // logoUrl: ('./logo.png'),
+  //     // rootUrl: "/iportal/", // 正确的地址
+  //   },
+  //   onSucceed: function (result: any) {
+  //     if (window.iEarthConsole) console.log("用户信息", result);
+  //     const { data } = result;
+  //     if (data && data.success && data.user) {
+  //       IportalStore.isLogin = true;
+  //       IportalStore.userInfo.userName = data.user.name;
+  //       IportalStore.userInfo.nickName = data.user.nickname;
+  //       window["$message"].success("登录成功");
+  //     }
+  //   },
+  //   onFailed: function (err) {
+  //     console.log("err------>", err);
+  //   },
+  //   onCanceled: function (err) {
+  //     console.log("err------>", err);
+  //   },
+  // });
+  // authInstance.create();
 }
 // 用户信息
 function toUserInfoPage() {
@@ -76,7 +76,7 @@ let UserName = computed(() => {
 });
 
 const isEnviPortal = computed(() => {
-  return window.iEarthBindData.EnvironmentMode != 'Normal';
+  return window.iEarthBindData.EnvironmentMode != "Normal";
 });
 </script>
 <style lang="scss" scoped>
