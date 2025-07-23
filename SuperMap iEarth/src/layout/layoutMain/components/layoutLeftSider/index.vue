@@ -68,28 +68,40 @@ function setLeftPanelStyle(id: number) {
 
 <style lang="scss" scoped>
 .left-tool-bar {
-  z-index: 100;
-  @include setBackground(0.32rem, 0.76rem, "@/assets/images/left-tool-bg.png");
   position: fixed;
+  z-index: 100;
   top: 0.8rem;
   left: 0.16rem;
-  padding-top: 0.06rem;
+
   box-sizing: border-box;
+  padding-top: 0.06rem;
+
+  @include setBackground(0.32rem, 0.76rem, "@/assets/images/left-tool-bg.png");
 
   .icon-container {
     display: block;
+
     width: 100%;
     height: 0.32rem;
+
     @include flexLayout(center);
     @include setIconstyle();
+    @include transition;
+
+    &.select-too-bar-bg {
+      color: #66bbff;
+    }
+    &:hover {
+      color: #a3a3a3;
+    }
   }
 
-  .select-too-bar-bg {
-    @include setBackground(
-      0.32rem,
-      0.32rem,
-      "@/assets/images/item-checked-bg.png"
-    );
-  }
+  // .select-too-bar-bg {
+  //   @include setBackground(
+  //     0.32rem,
+  //     0.32rem,
+  //     "@/assets/images/item-checked-bg.png"
+  //   );
+  // }
 }
 </style>

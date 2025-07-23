@@ -1,7 +1,8 @@
 <template>
-  <span class="icon-container" @click="openLocalScene">
+  <div class="icon-container" @click="openLocalScene">
     <i class="iconfont icondaoru" :title="$t('w_openLocalScene')"></i>
-  </span>
+    <span>读取</span>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -16,7 +17,10 @@ async function openLocalScene() {
   // 计算sceneInfo
   let sceneInfo: any = undefined;
   if (data.content) {
-    const content = (typeof data.content === 'string') ? JSON.parse(data.content) : data.content; // iportal中保存的content格式为string
+    const content =
+      typeof data.content === "string"
+        ? JSON.parse(data.content)
+        : data.content; // iportal中保存的content格式为string
     sceneInfo = content.sceneInfo;
   } else {
     sceneInfo = data;
@@ -26,21 +30,28 @@ async function openLocalScene() {
   // 计算layerTreeData
   let layerTreeData: any = undefined;
   if (data.content && data.content.layerTreeData) {
-    layerTreeData = data.content.layerTreeData
+    layerTreeData = data.content.layerTreeData;
   }
 
   // 计算bindiEarthData
   let bindiEarthData: any = undefined;
   if (data.content && data.content.bindiEarthData) {
-    bindiEarthData = data.content.bindiEarthData
+    bindiEarthData = data.content.bindiEarthData;
   }
 
   // 统一处理场景内容绑定数据等操作
   openScene.handleSceneContent({
-    sceneInfo:sceneInfo,
+    sceneInfo: sceneInfo,
     layerTreeData: layerTreeData,
-    bindiEarthData:bindiEarthData
+    bindiEarthData: bindiEarthData,
   });
 }
-
 </script>
+
+<style lang="scss" scoped>
+.icon-container {
+  i {
+    margin-right: 0.05rem;
+  }
+}
+</style>

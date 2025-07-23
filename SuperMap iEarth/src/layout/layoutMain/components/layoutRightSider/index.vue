@@ -2,43 +2,45 @@
   <div class="right-tool-bar">
     <!-- 指南 -->
     <div class="too-bar two-tool-bar">
-      <span class="icon-container" @click="reduceCompass">
+      <div class="icon-container" @click="reduceCompass">
         <i
           class="iconfont iconzhibeizhen_1"
           id="compass_dom"
           :title="$t('w_north')"
         ></i>
-      </span>
-      <span class="icon-container" @click="reset">
+        <span>{{ $t("w_north") }}</span>
+      </div>
+      <div class="icon-container" @click="reset">
         <i class="iconfont iconfuwei" :title="$t('w_reset')"></i>
-      </span>
+        <span>{{ $t("w_reset") }}</span>
+      </div>
     </div>
 
     <!-- 缩放 -->
     <div class="too-bar two-tool-bar">
-      <span class="icon-container">
-        <i
-          class="iconfont iconfangda"
-          @click="zoomIn"
-          @mousedown="continueZoomIn"
-          @mouseup="clearTimer"
-          :title="$t('w_zoomIn')"
-        ></i>
-      </span>
-      <span class="icon-container">
-        <i
-          class="iconfont iconsuoxiao"
-          @click="zoomOut"
-          @mousedown="continueZoomOut"
-          @mouseup="clearTimer"
-          :title="$t('w_zoomOut')"
-        ></i>
-      </span>
+      <div
+        class="icon-container"
+        @click="zoomIn"
+        @mousedown="continueZoomIn"
+        @mouseup="clearTimer"
+      >
+        <i class="iconfont iconfangda" :title="$t('w_zoomIn')"></i>
+        <span>{{ $t("w_zoomIn") }}</span>
+      </div>
+      <div
+        class="icon-container"
+        @click="zoomOut"
+        @mousedown="continueZoomOut"
+        @mouseup="clearTimer"
+      >
+        <i class="iconfont iconsuoxiao" :title="$t('w_zoomOut')"></i>
+        <span>{{ $t("w_zoomOut") }}</span>
+      </div>
     </div>
 
     <!-- 分析功能面板 -->
     <div class="too-bar five-tool-bar">
-      <span
+      <div
         class="icon-container"
         v-for="iconItem in state.rightToolBarList"
         :key="iconItem.id"
@@ -50,20 +52,18 @@
           :class="iconItem.iconName"
           :title="$t(iconItem.title)"
         ></i>
-      </span>
+        <span>{{ $t(iconItem.title) }}</span>
+      </div>
     </div>
 
     <!-- iportal：保存和首页 -->
     <div class="too-bar two-tool-bar" v-if="showIPortalToolBar">
       <span class="icon-container">
-        <i
-          class="iconfont iconzhuye"
-          @click="goHome"
-          :title="$t('w_home')"
-        ></i>
+        <i class="iconfont iconzhuye" @click="goHome" :title="$t('w_home')"></i>
       </span>
       <span class="icon-container" @click="saveScene">
         <i class="iconfont iconbaocun" title="将场景保存至iPortal中"></i>
+        <span>{{ $t("save") }}</span>
       </span>
     </div>
 
@@ -72,6 +72,7 @@
       <openLocalSence></openLocalSence>
       <span class="icon-container" @click="saveScene">
         <i class="iconfont iconbaocun" title="将场景保存为本地JSON文件"></i>
+        <span>{{ $t("save") }}</span>
       </span>
     </div>
 
@@ -85,8 +86,8 @@ import { onMounted, reactive, computed } from "vue";
 import { usePanelStore } from "@/store";
 import { IportalStoreCreate } from "@/store/iportalManage/index";
 import { getRootUrl } from "@/tools/iportal/portalTools";
-import openLocalSence from './coms/openLocalSence.vue';
-import saveLocalScene from './coms/saveLocalScene.vue';
+import openLocalSence from "./coms/openLocalSence.vue";
+import saveLocalScene from "./coms/saveLocalScene.vue";
 
 const panelStore = usePanelStore();
 const IportalStore = IportalStoreCreate();
@@ -241,7 +242,7 @@ function goHome() {
 }
 
 // 场景保存弹窗
-function saveScene(){
+function saveScene() {
   panelStore.showSavePanel = true;
   outputSceneToFile();
 }
@@ -265,55 +266,53 @@ function outputSceneToFile() {
 // 工具栏位置
 .right-tool-bar {
   position: fixed;
-  top: 0.8rem;
   right: 0.1rem;
+  bottom: 0.4rem;
 
+  @include flexLayout;
+  .too-bar {
+    margin-right: 0.1rem;
+
+    @include flexLayout(space-evenly);
+    i {
+      margin-right: 0.05rem;
+    }
+  }
   .one-tool-bar {
-    margin-bottom: 0.1rem;
     @include setBackground(
       0.32rem,
       0.32rem,
-      "@/assets/images/right-tool-one-bar.png"
+      "@/assets/images/bottom-tool-one-bar.png"
     );
   }
 
   .two-tool-bar {
-    box-sizing: border-box;
-    padding-top: 0.04rem;
-    margin-bottom: 0.1rem;
     @include setBackground(
+      1.26rem,
       0.32rem,
-      0.72rem,
-      "@/assets/images/right-tool-two-bar.png"
+      "@/assets/images/bottom-tool-two-bar.png"
     );
   }
 
   .five-tool-bar {
-    box-sizing: border-box;
-    padding-top: 0.08rem;
-    margin-top: 0.4rem;
-    margin-bottom: 0.1rem;
     @include setBackground(
+      4.1rem,
       0.32rem,
-      1.75rem,
-      "@/assets/images/right-tool-five-bar.png"
+      "@/assets/images/bottom-tool-five-bar.png"
     );
   }
 
   .icon-container {
-    display: block;
-    width: 100%;
-    height: 0.32rem;
     @include flexLayout(center);
     @include setIconstyle();
-  }
+    @include transition;
 
-  .select-too-bar-bg {
-    @include setBackground(
-      0.32rem,
-      0.32rem,
-      "@/assets/images/item-checked-bg.png"
-    );
+    &.select-too-bar-bg {
+      color: #66bbff;
+    }
+    &:hover {
+      color: #a3a3a3;
+    }
   }
 }
 </style>
