@@ -27,21 +27,23 @@ const panelStore = usePanelStore();
 let onlineBaseLayerList = layerStore.layerServiceData.onlineBaseLayerList;
 
 // 渲染组件前，基于当前场景中的影像图层来计算那些item是应该被勾选的
-onMounted(()=>{
-  onlineBaseLayerList.forEach(item=>item.chooseType = false);
-  viewer.imageryLayers._layers.forEach(imageLayer => {
+onMounted(() => {
+  onlineBaseLayerList.forEach((item) => (item.chooseType = false));
+  viewer.imageryLayers._layers.forEach((imageLayer) => {
     let name = layerStore.getImageryLayerName(imageLayer);
-    onlineBaseLayerList.forEach(item => {
-      if(item.name && $t(item.name) == name) {
+    onlineBaseLayerList.forEach((item) => {
+      if (item.name && $t(item.name) == name) {
         item.chooseType = true;
       }
     });
   });
-})
+});
 
 // 中文环境下，隐藏OSM底图
-if(i18n.global.locale === 'zh'){
-  onlineBaseLayerList = onlineBaseLayerList.filter(item => item.type !== "OSM");
+if (i18n.global.locale === "zh") {
+  onlineBaseLayerList = onlineBaseLayerList.filter(
+    (item) => item.type !== "OSM"
+  );
 }
 
 let imageryProvider: any = null;
@@ -92,12 +94,15 @@ function addBaseLayer(item: any) {
   viewer.imageryLayers.addImageryProvider(imageryProvider);
 
   panelStore.closeRightToolPanel(1); // 1为关闭左侧面板
+
+  layerStore.updateLayer({ type: "imagery" });
 }
 </script>
 
 <style lang="scss" scoped>
 .img-box-text {
   text-align: center;
+
   font-size: 0.14rem;
 }
 
@@ -107,7 +112,7 @@ function addBaseLayer(item: any) {
 
 // 黑色背景
 .img-box {
-  background-color: #000;
   border: 0.02rem solid #3498e500;
+  background-color: #000;
 }
 </style>

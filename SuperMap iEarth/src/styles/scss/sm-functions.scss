@@ -1,0 +1,7 @@
+@function vw($px) {
+  @return calc(100 / 1920) * $px + vw;
+}
+
+@function vh($px) {
+  @return calc(100 / 1080) * $px + vh;
+}

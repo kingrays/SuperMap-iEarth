@@ -1,11 +1,12 @@
-@import './scss/sm-variables.scss';
-@import './scss/sm-mixin.scss';
+@import "./scss/sm-variables.scss";
+@import "./scss/sm-mixin.scss";
+@import "./scss/sm-functions.scss";
 
 html,
 body,
 #app {
-  height: 100%;
   width: 100%;
+  height: 100%;
   margin: 0;
   padding: 0;
 }
@@ -23,8 +24,10 @@ body,
   display: flex;
   align-items: center;
   justify-content: space-between;
+
   margin-bottom: 0.11rem;
   // font-size: 14px; // number-input的罪魁祸首
+
   font-size: 0.14rem;
 
   span,
@@ -33,11 +36,12 @@ body,
   }
 
   .check-color-pick {
-    width: 1.96rem;
-    height: 0.33rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    width: 1.96rem;
+    height: 0.33rem;
 
     .color-pick-box {
       margin-left: 0.1rem;
@@ -45,24 +49,27 @@ body,
   }
 
   .check-box {
-    width: 1.96rem;
-    height: 0.32rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    width: 1.96rem;
+    height: 0.32rem;
   }
 
   .slider-box {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
+
     width: 1.76rem;
     height: 0.32rem;
-    padding: 0 .1rem;
+    padding: 0 0.1rem;
+    // box-sizing: border-box;
+
+    border: 0.01rem solid rgba(255, 255, 255, 0.15);
     border-radius: 0.04rem;
     background: rgba(255, 255, 255, 0.04);
-    // box-sizing: border-box;
-    border: 0.01rem solid rgba(255, 255, 255, 0.15);
 
     .slider-unit {
       margin-left: 0.1rem;
@@ -71,16 +78,18 @@ body,
 
   .radio-group {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
+
     width: 1.96rem;
     height: 0.32rem;
   }
 
   .row-slider-num {
-    width: .3rem;
     display: flex;
     justify-content: space-between;
+
+    width: 0.3rem;
   }
 
   .row-content {
@@ -92,11 +101,13 @@ body,
 // slinder滑块的统一样式
 .slider-input-number {
   width: 27%;
-  margin: 0rem -0.1rem 0rem 0.08rem;
-  border: none !important;
   height: auto;
-  outline: medium;
+  margin: 0rem -0.1rem 0rem 0.08rem;
+
   text-align: center;
+
+  border: none !important;
+  outline: medium;
 }
 
 .slider-input-number .n-input {
@@ -108,7 +119,7 @@ body,
   margin-left: 1.15rem;
 
   .ans-btn {
-    margin-right: .08rem;
+    margin-right: 0.08rem;
   }
 }
 
@@ -125,7 +136,7 @@ body,
 // 操作按钮-第二个按钮（清除）样式
 .btn-secondary {
   :hover {
-    color: #5EB7F2 !important;
+    color: #5eb7f2 !important;
   }
 }
 
@@ -147,24 +158,27 @@ body,
 
 // 颜色选择器（色带）的相关样式
 .color-pick-box {
-  width: 1.96rem;
-  height: 0.33rem;
-  border-radius: 0.04rem;
-  background: rgba(255, 255, 255, 0.04);
-  box-sizing: border-box;
-  border: 0.01rem solid rgba(255, 255, 255, 0.15);
   display: flex;
   align-items: center;
+
+  box-sizing: border-box;
+  width: 1.96rem;
+  height: 0.33rem;
+  margin-left: 0.38rem;
   padding: 0 0.12rem;
-  margin-left: .38rem;
+
+  border: 0.01rem solid rgba(255, 255, 255, 0.15);
+  border-radius: 0.04rem;
+  background: rgba(255, 255, 255, 0.04);
 }
 
 .n-color-picker-trigger__fill {
-  // 色带的固定尺寸
-  // height: 0.08rem;
-  height: 0.08rem;
   top: 0.1rem !important;
   bottom: 0.1rem !important;
+  // 色带的固定尺寸
+  // height: 0.08rem;
+
+  height: 0.08rem;
 }
 
 .color-pick-box-full {
@@ -174,19 +188,25 @@ body,
 // 面板上图标的排列样式等
 .icon-list {
   display: flex;
+
   width: 1.96rem;
   height: 0.32rem;
-  line-height: 0.32rem;
+
   text-align: center;
-  background: rgba(255, 255, 255, 0.04);
+
   border: 0.01rem solid rgba(255, 255, 255, 0.15);
   border-radius: 0.04rem;
+  background: rgba(255, 255, 255, 0.04);
+
+  line-height: 0.32rem;
 
   .icon-span {
-    width: 33%;
     display: inline-block;
-    text-align: center;
+
+    width: 33%;
+
     cursor: pointer;
+    text-align: center;
   }
 
   .selected-icon {
@@ -198,29 +218,36 @@ body,
 .icon-list-space {
   width: 2.2rem;
   height: auto;
-  background: rgba(255, 255, 255, 0.04);
+
   border: 0.01rem solid rgba(255, 255, 255, 0.15);
   border-radius: 0.04rem;
+  background: rgba(255, 255, 255, 0.04);
 
   .icon-span {
-    width: 33%;
     display: inline-block;
-    text-align: center;
+
+    width: 33%;
+
     cursor: pointer;
+    text-align: center;
   }
 
   .icon-span-four {
-    width: 25%;
     display: inline-block;
-    text-align: center;
+
+    width: 25%;
+
     cursor: pointer;
+    text-align: center;
   }
 
   .icon-span-six {
-    width: 22%;
     display: inline-block;
-    text-align: center;
+
+    width: 22%;
+
     cursor: pointer;
+    text-align: center;
   }
 
   .selected-icon {
@@ -236,12 +263,15 @@ body,
 // 单独控制一些特殊的图标
 .iconSize {
   display: block;
+
   margin: 0.02rem;
+
   font-size: 0.2rem;
 }
 
 :deep(.n-scrollbar-rail--vertical) {
   right: 0rem !important;
+
   width: 0.08rem !important;
 }
 
@@ -258,8 +288,8 @@ body,
 
 //slider样式
 .n-slider-handle {
+  border: 1.5px solid #3499e5 !important;
   background-color: #414141 !important;
-  border: 1.5px solid #3499E5 !important;
 }
 
 //图层面板小三角
@@ -275,13 +305,15 @@ body,
 
 // 时间控件样式
 .supermap3d-viewer-timelineContainer {
-  visibility: visible;
-  width: 100%;
-  left: 0rem;
   right: 0rem;
+  left: 0rem;
+
+  visibility: visible;
+
+  width: 100%;
 }
 
-.n-tree-node-content__suffix>div {
+.n-tree-node-content__suffix > div {
   display: flex;
   flex-wrap: nowrap;
 }
@@ -290,32 +322,38 @@ body,
 .addData-data-container {
   display: flex;
   flex-wrap: wrap;
+
   margin-right: 0.07rem;
 
   .ItemBox {
-    width: 30%;
-    // color: $--SM--FontColor-Sub;
-    color: rgba(255, 255, 255, 0.85);
-    margin-bottom: 0.07rem;
-    margin-right: 0.12rem;
     box-sizing: border-box;
+    width: 30%;
+    margin-right: 0.12rem;
+    margin-bottom: 0.07rem;
+
     cursor: pointer;
+    // color: $--SM--FontColor-Sub;
+
+    color: rgba(255, 255, 255, 0.85);
 
     span {
       font-size: 0.14rem;
     }
 
     .img-box {
+      overflow: hidden;
+
       width: 1.06rem;
       height: 0.85rem;
-      border-radius: 0.05rem;
-      overflow: hidden;
       margin-bottom: 0.04rem;
+
+      border-radius: 0.05rem;
 
       .img {
         width: 100%;
         height: 100%;
         // object-fit: none;
+
         object-fit: cover; // 图片不被挤压
       }
     }
@@ -334,31 +372,36 @@ body,
 
 // 地形操作飞行等切换btn的样式
 .btn-list {
-  width: 2.4rem;
   display: flex;
+
+  width: 2.4rem;
+
   cursor: pointer;
+
   font-size: 0.14rem;
 
   .btn {
     width: 25%;
     height: 0.26rem;
-    line-height: 0.26rem;
+
     text-align: center;
+
+    line-height: 0.26rem;
   }
 
   .select-btn {
-    border-radius: 0.02rem;
     color: #3499e5;
+    border-radius: 0.02rem;
     background: rgba(255, 255, 255, 0.15);
   }
 }
 
 // 图层列表侧边栏-面板
 .layerSeries-box {
+  box-sizing: border-box;
   width: 100%;
   height: 100%;
   padding: 0 0.16rem;
-  box-sizing: border-box;
 }
 
 // 符号库等不让他们居中的

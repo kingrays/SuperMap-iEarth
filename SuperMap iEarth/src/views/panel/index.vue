@@ -1,6 +1,5 @@
 <template>
   <div class="too-panel">
-
     <!-- 左侧面板 -->
     <div class="left-panel" v-if="panelStore.leftTooPanel">
       <!-- header -->
@@ -37,16 +36,31 @@
         <span class="zst1"></span>
         <span class="zst2"></span>
         <div class="panel-close">
-          <i class="iconfont iconsuoxiao" style="font-size: 0.14rem; margin-right: 0.2rem;" @click="isFold = true" :title="$t('foldPanel')"></i>
-          <i class="iconfont iconguanbi" style="font-size: 0.14rem" @click="panelCloseHandle(2)" :title="$t('closePanel')"></i>
+          <i
+            class="iconfont iconsuoxiao"
+            style="font-size: 0.14rem; margin-right: 0.2rem"
+            @click="isFold = true"
+            :title="$t('foldPanel')"
+          ></i>
+          <i
+            class="iconfont iconguanbi"
+            style="font-size: 0.14rem"
+            @click="panelCloseHandle(2)"
+            :title="$t('closePanel')"
+          ></i>
         </div>
       </div>
 
       <!-- header-折叠 -->
       <div class="panel-header-fold">
-        <div class="one-tool-bar" v-show="isFold" @click="isFold = false" :title="$t('expandPanel')">
+        <div
+          class="one-tool-bar"
+          v-show="isFold"
+          @click="isFold = false"
+          :title="$t('expandPanel')"
+        >
           <span class="icon-container">
-            <i class="iconfont iconfanhui" style="font-size: 0.14rem" ></i>
+            <i class="iconfont iconfanhui" style="font-size: 0.14rem"></i>
           </span>
         </div>
       </div>
@@ -85,7 +99,7 @@ import QxCover from "@/package/layerSeries/qx-cover/index";
 import MvtStyle from "@/package/layerSeries/mvt-style/index";
 import LayerTheme from "@/package/layerSeries/layer-theme/index";
 
-import { storeToRefs } from 'pinia'
+import { storeToRefs } from "pinia";
 import { usePanelStore } from "@/store/index";
 import { reactive, markRaw, computed } from "vue";
 import { PanelNameEnum } from "@/enums/layerEnum";
@@ -100,105 +114,111 @@ function panelCloseHandle(leftOrRght: any) {
 
 // 左侧面板标题
 const leftPanleTitle = computed(() => {
-  const target = panelStore.panelList.leftToolBarList.find(item => item.isSelected)
+  const target = panelStore.panelList.leftToolBarList.find(
+    (item) => item.isSelected
+  );
   return target ? target.title : "";
 });
 
 // 右侧面板标题
 const rightPanleTitle = computed(() => {
-  const target = panelStore.panelList.rightToolBarList.find(item => item.isSelected)
+  const target = panelStore.panelList.rightToolBarList.find(
+    (item) => item.isSelected
+  );
   return target ? target.title : "";
 });
-
 
 // 左侧面板组件列表
 const comLeftList = reactive([
   {
     name: PanelNameEnum.LayerTree,
-    com: markRaw(LayerTree)
+    com: markRaw(LayerTree),
   },
   {
     name: PanelNameEnum.AddData,
-    com: markRaw(AddData)
-  }
+    com: markRaw(AddData),
+  },
 ]);
 
 // 右侧面板组件列表
 const comRightList = reactive([
   {
     name: PanelNameEnum.Analyse3D,
-    com: markRaw(Analyse3D)
+    com: markRaw(Analyse3D),
   },
   {
     name: PanelNameEnum.Measure,
-    com: markRaw(Measure)
+    com: markRaw(Measure),
   },
   {
     name: PanelNameEnum.SceneSet,
-    com: markRaw(SceneSet)
+    com: markRaw(SceneSet),
   },
   {
     name: PanelNameEnum.ObjectPainting,
-    com: markRaw(ObjectPainting)
+    com: markRaw(ObjectPainting),
   },
   {
     name: PanelNameEnum.QuerySeries,
-    com: markRaw(QuerySeries)
+    com: markRaw(QuerySeries),
   },
   {
     name: PanelNameEnum.LayerOpration,
-    com: markRaw(LayerOpration)
+    com: markRaw(LayerOpration),
   },
   {
     name: PanelNameEnum.LayerAttribute,
-    com: markRaw(LayerAttribute)
+    com: markRaw(LayerAttribute),
   },
   {
     name: PanelNameEnum.LayerStyle,
-    com: markRaw(LayerStyle)
+    com: markRaw(LayerStyle),
   },
   {
     name: PanelNameEnum.LayerQuery,
-    com: markRaw(LayerQuery)
+    com: markRaw(LayerQuery),
   },
   {
     name: PanelNameEnum.ImageMapQuery,
-    com: markRaw(MapQuery)
+    com: markRaw(MapQuery),
   },
   {
     name: PanelNameEnum.QXSingle,
-    com: markRaw(QxSingle)
+    com: markRaw(QxSingle),
   },
   {
     name: PanelNameEnum.ImageMapCover,
-    com: markRaw(QxCover)
+    com: markRaw(QxCover),
   },
   {
     name: PanelNameEnum.MVTStyle,
-    com: markRaw(MvtStyle)
+    com: markRaw(MvtStyle),
   },
   {
     name: PanelNameEnum.LayerTheme,
-    com: markRaw(LayerTheme)
+    com: markRaw(LayerTheme),
   },
 ]);
 
 // 计算左侧面板当前组件
 const currentLeftCom = computed(() => {
-  const targetItem = panelStore.panelList.leftToolBarList.find(item => item.isSelected)
-  if(!targetItem) return;
-  const targetCom = comLeftList.find(item => item.name === targetItem.id)
-  if(targetCom) return targetCom.com;
+  const targetItem = panelStore.panelList.leftToolBarList.find(
+    (item) => item.isSelected
+  );
+  if (!targetItem) return;
+  const targetCom = comLeftList.find((item) => item.name === targetItem.id);
+  if (targetCom) return targetCom.com;
 });
 
 // 计算右侧面板当前组件
 const currentRightCom = computed(() => {
-  const targetItem = panelStore.panelList.rightToolBarList.find(item => item.isSelected)
-  if(!targetItem) return;
-  const targetCom = comRightList.find(item => item.name === targetItem.id)
-  if(targetCom) return targetCom.com;
+  const targetItem = panelStore.panelList.rightToolBarList.find(
+    (item) => item.isSelected
+  );
+  if (!targetItem) return;
+  const targetCom = comRightList.find((item) => item.name === targetItem.id);
+  if (targetCom) return targetCom.com;
 });
-
 </script>
 
 <style lang="scss" scoped>
@@ -207,65 +227,94 @@ const currentRightCom = computed(() => {
 }
 
 .left-panel {
-  @include setPanelTitle();
   position: fixed;
+
   top: 0.75rem;
+
   left: 0.55rem;
+
   width: 3.37rem;
+
+  @include setPanelTitle();
 }
 
 .right-panel {
-  @include setPanelTitle();
   position: fixed;
+
   top: 0.7rem;
+
   right: 0.45rem;
+
   width: 3.38rem;
+
+  @include setPanelTitle();
 }
 
 .left-panel .zst1 {
-  @include setBackground(0.45rem, 0.11rem, "@/assets/panelbg/zst1.png");
   position: absolute;
+
   top: 0rem;
+
   left: 1.6rem;
+
+  @include setBackground(0.45rem, 0.11rem, "@/assets/panelbg/zst1.png");
 }
 .right-panel .zst1 {
-  @include setBackground(0.45rem, 0.11rem, "@/assets/panelbg/zst1.png");
   position: absolute;
+
   top: 0rem;
+
   left: 1.4rem;
+
+  @include setBackground(0.45rem, 0.11rem, "@/assets/panelbg/zst1.png");
 }
 
 .zst2 {
-  @include setBackground(1.32rem, 0.08rem, "@/assets/panelbg/zst2.png");
   position: absolute;
+
   top: 0.26rem;
+
+  @include setBackground(1.32rem, 0.08rem, "@/assets/panelbg/zst2.png");
 }
 
 .panle-header {
-  width: 3.84rem;
-  height: 0.43rem;
-  padding: 0 0.12rem;
-  background: url("@/assets/panelbg/toubu.png") no-repeat;
-  background-size: 100% 100%;
   box-sizing: border-box;
+  width: 3.84rem;
+
+  height: 0.43rem;
+
+  padding: 0 0.12rem;
+
+  background: url("@/assets/panelbg/toubu.png") no-repeat;
+
+  background-size: 100% 100%;
 }
 
 .panle-container {
-  @include setsSrollbar();
-  width: 3.84rem;
-  height: auto;
-  max-height: 6.6rem;
-  background: url("@/assets/panelbg/zhongjian.png");
-  background-size: 100% 100%;
   box-sizing: border-box;
+
+  width: 3.84rem;
+
+  height: auto;
+
+  max-height: 6.6rem;
+
+  background: url("@/assets/panelbg/zhongjian.png");
+
+  background-size: 100% 100%;
+
+  @include hideScrollBar();
 }
 
 .panle-footer {
-  width: 3.84rem;
-  height: 0.24rem;
-  background: url("@/assets/panelbg/weibu.png") no-repeat;
-  background-size: 100% 100%;
   box-sizing: border-box;
+  width: 3.84rem;
+
+  height: 0.24rem;
+
+  background: url("@/assets/panelbg/weibu.png") no-repeat;
+
+  background-size: 100% 100%;
 }
 
 .panle-header-right {
@@ -283,20 +332,26 @@ const currentRightCom = computed(() => {
 // 展开面板图标定位和背景
 .panel-header-fold {
   position: relative;
-  left: 3rem;
+
   top: 0.1rem;
 
+  left: 3rem;
   .one-tool-bar {
-    @include setBackground(0.32rem,
+    @include setBackground(
+      0.32rem,
       0.32rem,
       "@/assets/images/right-tool-one-bar.png"
     );
 
     .icon-container {
       display: block;
+
       width: 100%;
+
       height: 0.32rem;
+
       @include flexLayout(center);
+
       @include setIconstyle();
     }
   }

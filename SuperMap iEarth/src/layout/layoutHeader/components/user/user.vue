@@ -76,19 +76,21 @@ let UserName = computed(() => {
 });
 
 const isEnviPortal = computed(() => {
-  return window.iEarthBindData.EnvironmentMode != "Normal";
+  return window.iEarthBindData?.EnvironmentMode != "Normal";
 });
 </script>
 <style lang="scss" scoped>
 .userinfoBox {
-  width: auto;
-  height: 0.4rem;
-  line-height: 0.4rem;
   display: flex;
   justify-content: end;
 
+  width: auto;
+  height: 0.4rem;
+
+  line-height: 0.4rem;
   .iconfont {
     margin-right: 0.1rem;
+
     font-size: 0.18rem;
   }
 
